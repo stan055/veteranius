@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: rgb(32, 32, 73);
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        .container {
+            min-height: 100px;
+            max-width: 300px;
+            margin: 1rem auto;
+            border: 1px solid salmon;
+            padding: 2rem 1rem 2rem 1rem;
+            text-align: center;
+        }
+        input {
+            height: 2.5rem;
+            font-size: x-large;
+            max-width: 220px;
+            margin: .5rem;
+        }
+        button {
+            width: 53px;
+            height: 55px;
+            font-size: xx-large;
+        }
+        button.equal-btn {
+            width: 110px;
+        }
+    </style>
+
+    <div class="container">
+        <input type="text">
+
+        <button onclick="insert(1)">1</button>
+        <button onclick="insert(2)">2</button>
+        <button onclick="insert(3)">3</button>
+        <button onclick="insert('/')">/</button>
+        <br>
+        <button  onclick="insert(4)">4</button>
+        <button  onclick="insert(5)">5</button>
+        <button  onclick="insert(6)">6</button>
+        <button  onclick="insert('*')">*</button>
+        <br>
+        <button  onclick="insert(7)">7</button>
+        <button  onclick="insert(8)">8</button>
+        <button  onclick="insert(9)">9</button>
+        <button  onclick="insert('-')">-</button>
+        <br>
+        <button onclick="insert(0)">0</button>
+        <button class="equal-btn" onclick="equal()">=</button>
+        <button onclick="insert('+')">+</button>
+    </div>
+
+    <script>
+        const input = document.querySelector('.container input')
+        const insert = (num) => input.value += num
+        const equal = () => input.value = eval(input.value)
+    </script>
+</body>
+</html>

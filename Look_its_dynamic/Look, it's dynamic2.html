@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: rgb(32, 32, 73);
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        h2, h3, label, legend {
+            color: aliceblue;
+        }
+
+        .container {
+            height: 100px;
+            width: 100px;
+            margin: 1rem auto;
+            border: 1px solid salmon;
+            padding: 0 1rem 1rem 1rem;
+        }
+    </style>
+
+    <div class="container">
+    </div>
+    <button class="changeBtn">Change</button>
+    <br><br><br>
+    <div>
+        <label for="height">Height:</label>
+        <input type="number" name="height" placeholder="100">
+        <br><br>
+        <label for="Width">Width:</label>
+        <input type="number" name="width" placeholder="100">
+    </div>
+    
+    <script>
+        const changeBtn = document.querySelector('.changeBtn')
+        const container = document.querySelector('.container')
+        const inputsSize = document.querySelectorAll('input')
+
+        colorArr = ['red', 'green', 'blue']
+        let color = 0
+        changeBtn.addEventListener('click', (e) => {
+            color == 2 ? color = 0 : color++ 
+            container.style.background = colorArr[color]
+        })
+
+        inputsSize.forEach((e) => {
+            e.addEventListener('input', (e) => {
+                container.style[`${e.target.name}`] = `${e.target.value}px`
+            })
+        })
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: rgb(32, 32, 73);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h2, h3, label, legend {
+            color: aliceblue;
+        }
+
+        .container {
+            width: 300px;
+            margin: 1rem auto;
+            border: 1px solid salmon;
+            padding: 0 1rem 1rem 1rem;
+        }
+
+    </style>
+
+    <div class="container gen">
+        <h3>Generate random number in console</h3>
+        <button onclick="randomInt(3569, 2255889)"><b>Go...</b></button>
+    </div>
+
+    <div class="container">
+        <h3>Form</h3>
+        <form>
+            <label for="required">Required</label><br>
+            <input type="text" name="required" required><br><br>
+            <label for="readonly">Readonly</label><br>
+            <input type="text" name="readonly" readonly><br><br>
+            <label for="value">Value</label><br>
+            <input type="text" name="value" value="value"><br><br>
+            <label for="select">Select</label><br>
+            <select name="select">
+                <option value="one">one.................</option>
+                <option value="two">two.................</option>
+                <option value="three">three...............</option>
+            </select><br><br>
+            <input type="submit">
+        </form>
+    </div>
+
+
+
+    
+    <script>
+        function randomInt(min, max) {
+	        console.log(min + Math.floor((max - min) * Math.random()))
+        }
+
+        const form = document.querySelector('form')
+        
+        form.addEventListener('submit', (e) => {
+            event.preventDefault();
+            let formData = new FormData(form)
+            for (let d of formData.entries()) {
+                console.log(d)
+            }
+        })
+
+    </script>
+</body>
+</html>
