@@ -1,0 +1,19 @@
+{
+  "name": "week6api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "stan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pastebin-js": "^1.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
