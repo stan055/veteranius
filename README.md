@@ -15,3 +15,5 @@ API. What is it? How to use it? Why to use it? Implement one of chosen API (s3, 
 (Difficult)
 1. Using Google Maps API build an html form that will accept address and return its latitude and longitude
 2. Build a function that accepts Airport code (for example, KBP, JFK, IEV) and flight number and returns flight status fot this flight for the current day
+
+<img src="snip.PNG" width="500">
