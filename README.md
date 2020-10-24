@@ -1,7 +1,7 @@
 # veteranius
 
 ## Week6api 
-Deploy: https://afternoon-inlet-30497.herokuapp.com/
+Deployed: https://afternoon-inlet-30497.herokuapp.com/
 
 API. What is it? How to use it? Why to use it? Implement one of chosen API (s3, fb, bitly, twilio, paypal button etc) on your web site 
 (Easy)
