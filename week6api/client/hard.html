@@ -93,7 +93,6 @@
 
     <script>
       const geoKey = 'AIzaSyBnEwzHk0tZNUck5FPZeqTTFGx2HD33qlU'
-      const aviaKey = 'cc3ff46cc95ac84190601c134ef11f6b'
 
       const formCoord = document.querySelector('.card.one form')
       const cardOneP = document.querySelector('.card.one .result')
@@ -120,48 +119,33 @@
         event.preventDefault()
 
         dataTarget = {}
-        dataTarget['access_key'] = aviaKey
+        dataTarget['access_key'] = ''
         e.target[0].value == ''? null : dataTarget['dep_iata'] = e.target[0].value
         e.target[1].value == ''? null : dataTarget['flight_number'] = e.target[1].value
         e.target[2].value == ''? null : dataTarget['flight_iata'] = e.target[2].value
         e.target[3].value == ''? null : dataTarget['flight_icao'] = e.target[3].value
 
-        $.ajax({
-          url: 'http://api.aviationstack.com/v1/flights',
-          data: dataTarget,
-          dataType: 'json',
-          success: function(apiResponse) {
-
-            if(apiResponse['pagination']['count'] == 0) {
-              airResult.innerHTML = `
-                <div class="alert alert-danger" role="alert">
-                  Nothing found. Сheck the data is correct...
-                </div>  
-                `
-            } else {
-              console.log(apiResponse)
-              apiResponse['data'].forEach(el => {
-                  res = `Airline <i>${el['airline']['name']}</i> &nbsp; iata: <i>${el['airline']['iata']}</i> &nbsp; icao: <i>${el['airline']['icao']}</i><br>
-                    Arrival airport: <i>${el['arrival']['airport']}</i> &nbsp; timezone: <i>${el['arrival']['timezone']}</i> &nbsp; iata: <i>${el['arrival']['iata']}</i> &nbsp; icao: <i>${el['arrival']['icao']}</i> &nbsp; terminal: <i>${el['arrival']['terminal']}</i><br>
-                    Departure airport: <i>${el['departure']['airport']}</i> &nbsp; timezone: <i>${el['departure']['timezone']}</i> &nbsp; iata: <i>${el['departure']['iata']}</i> &nbsp; icao: <i>${el['departure']['icao']}</i> &nbsp; terminal: <i>${el['departure']['terminal']}</i><br>
-                    Flight number: <i>${el['flight']['number']}</i> &nbsp; iata: <i>${el['flight']['iata']}</i> &nbsp; icao: <i>${el['flight']['icao']}</i><br>
-                    Flight date: <i>${el['flight_date']}</i> <br>
-                    Flight status: <i>${el['flight_status']}</i>
-                  `
-                  airResult.innerHTML += `<div class="alert alert-success" role="alert">
-                    ${res}
-                    </div>
-                  `
-              })
-            }
-
-          }, 
-          fail: (function(e) {
-            airResult.innerHTML = `
-                <div class="alert alert-danger" role="alert">
-                  Fail request... ${e}
-                </div>  
-                `
+        fetch('/api-aviationstack', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataTarget)
+        }).then((response) => {
+            return response.json()
+        }).then((data) => {
+          airResult.innerHTML = ''
+          let res = ''
+            data.data.forEach(el => {
+              res = `Airline <i>${el['airline']['name']}</i> &nbsp; iata: <i>${el['airline']['iata']}</i> &nbsp; icao: <i>${el['airline']['icao']}</i><br>
+                Arrival airport: <i>${el['arrival']['airport']}</i> &nbsp; timezone: <i>${el['arrival']['timezone']}</i> &nbsp; iata: <i>${el['arrival']['iata']}</i> &nbsp; icao: <i>${el['arrival']['icao']}</i> &nbsp; terminal: <i>${el['arrival']['terminal']}</i><br>
+                Departure airport: <i>${el['departure']['airport']}</i> &nbsp; timezone: <i>${el['departure']['timezone']}</i> &nbsp; iata: <i>${el['departure']['iata']}</i> &nbsp; icao: <i>${el['departure']['icao']}</i> &nbsp; terminal: <i>${el['departure']['terminal']}</i><br>
+                Flight number: <i>${el['flight']['number']}</i> &nbsp; iata: <i>${el['flight']['iata']}</i> &nbsp; icao: <i>${el['flight']['icao']}</i><br>
+                Flight date: <i>${el['flight_date']}</i> <br>
+                Flight status: <i>${el['flight_status']}</i>
+              `
+              airResult.innerHTML += `<div class="alert alert-success" role="alert">
+                ${res}
+                </div>
+              `
             })
         })
       })

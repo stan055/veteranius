@@ -65,9 +65,9 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Paste</button>
                 </form>
+                <div class="container pt-3 response">
+                </div>
             </div>
-        </div>
-        <div class="container pt-3 response">
         </div>
     </div>
 
@@ -78,27 +78,35 @@
         const form = document.querySelector('form')
 
         function gettingIssCurLocation () {
-            fetch(apiIss)
-                .then((response) => {
-                    if (response.status == 200) {
-                        return response.json()
-                    }
-                }).then((data) => {
+            fetch('/apiiss', {
+                method: 'Post',
+                headers: { 'Content-Type': 'application/json' },
+            }).then((response) => {
+            if(response.status == 200) {
+                return response.json()
+            }
+            else
+                return null
+            }).then((data) => {
+                if(data) {
                     issLongitude = data.iss_position.longitude
-                    issLatitude = data.iss_position.latitude
-                    cardIssP.innerHTML = `
-                        <img src="/iss.png" width="75" />
-                        Latitude: ${issLatitude} &nbsp; Longitude: ${issLongitude}`
-                })
+                        issLatitude = data.iss_position.latitude
+                        cardIssP.innerHTML = `
+                            <img src="/iss.png" width="75" />
+                            Latitude: ${issLatitude} &nbsp; Longitude: ${issLongitude}`
+            }
+            })
         }
 
         gettingIssCurLocation()
-        let timerIss = setInterval(() => gettingIssCurLocation(), 1000)
+        let timerIss = setInterval(() => gettingIssCurLocation(), 1300)
+
+
 
         form.addEventListener('submit', (e) => {
             event.preventDefault()
             fetch('/api', {
-                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ title: e.target[0].value, body: e.target[1].value })
             }).then((response) => {

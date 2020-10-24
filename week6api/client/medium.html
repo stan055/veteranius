@@ -64,40 +64,50 @@
         const cardHeadS = document.querySelector('.card-header span') 
         const cardTrident = document.querySelector('.card.trident blockquote')
 
-        const lat = 50.4
-        const lon = 30.5
-        const alt = 100
-
-        $.getJSON(`http://api.open-notify.org/iss-pass.json?lat=${lat}&lon=${lon}&alt=${alt}&n=1&callback=?`, function(data) {
+        fetch('/apiiss-pass', {
+          method: 'Post',
+          headers: { 'Content-Type': 'application/json' },
+        }).then((response) => {
+          if(response.status == 200)
+            return response.json()
+          else {
+            console.error(response)
+            return null
+          }
+        }).then((data) => {
+          if(data) {
             data['response'].forEach(function (d) {
                 var date = new Date(d['risetime']*1000)
                 cardHeadS.innerHTML = date.toLocaleTimeString()
                 cardIssS.innerHTML = date.toLocaleString()
-
             })
+          }
         })
 
-        const key = '013dbcc35e77eb38d08a0b88c4e22cfd' 
-        const q = 'trident'
-        const url = 'http://api.serpstack.com/search?access_key='+key+'&type=web'+'&query='+q+'&page=2'+'&num=10'+'&gl=ua'+'&hl=uk'
-
-        let result = ''
-        $.get(url, function(data) {
-            console.log(data)
+        fetch('/api-serpstack', {
+          method: 'Post',
+          headers: { 'Content-Type': 'application/json' },
+        }).then((response) => {
+          if(response.status == 200) {
+            return response.json()
+          } else {
+            console.error(response)
+            return null
+          }
+        }).then((data) => {
+          if(data) {
+            let result = ''
             data.organic_results.forEach(res => {
                 result += `
-                    <a href="${res.url}">${res.url}</a>
                     <h5>${res.title}</h5>
+                    <a href="${res.url}">${res.url}</a>
                     <p>${res.snippet}</p>
                     <br>
                 `
             })
             cardTrident.innerHTML = result
+          }
         })
-        
-
-          
-
     </script>
 </body>
 </html>
