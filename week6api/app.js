@@ -27,23 +27,10 @@ app.post('/api-aviationstack', (req, res) => {
   const aviaKey = 'cc3ff46cc95ac84190601c134ef11f6b'
   let params = req.body
   params.access_key = aviaKey
-  // let reqData = req.body
-  // reqData.access_key = aviaKey
-  // url = url+'?access_key='+reqData.access_key+'&flight_number='+reqData.flyght_number+'&flight_iata='+reqData.flight_iata+'&'
-  // console.log(reqData)
   axios.get('http://api.aviationstack.com/v1/flights', {params})
   .then(response => {
     const apiResponse = response.data;
     res.status(200).json(apiResponse)
-    // if (Array.isArray(apiResponse['results'])) {
-    //     apiResponse['results'].forEach(flight => {
-    //         if (!flight['live']['is_ground']) {
-    //             console.log(`${flight['airline']['name']} flight ${flight['flight']['iata']}`,
-    //                 `from ${flight['departure']['airport']} (${flight['departure']['iata']})`,
-    //                 `to ${flight['arrival']['airport']} (${flight['arrival']['iata']}) is in the air.`);
-    //         }
-    //     });
-    // }
   }).catch(error => {
     console.log(error);
   });
