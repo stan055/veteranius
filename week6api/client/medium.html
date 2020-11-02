@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Veteranius</title>
 </head>
 <body>
@@ -19,7 +18,7 @@
               <a class="nav-link active" href="/medium">Medium</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/hard">Hard</a>
+              <a class="nav-link" href="/hard">Difficult</a>
             </li>
           </ul>
         </div>
@@ -53,7 +52,7 @@
             </div>
             <div class="card-body">
               <blockquote class="blockquote mb-0">
-                <div class="spinner-border text-muted"></div> &nbsp;&nbsp; Load data... await ~ 8sec
+                <div class="spinner-border text-muted"></div> &nbsp;&nbsp; Load data... await
               </blockquote>
             </div>
         </div>
@@ -96,16 +95,7 @@
           }
         }).then((data) => {
           if(data) {
-            let result = ''
-            data.organic_results.forEach(res => {
-                result += `
-                    <h5>${res.title}</h5>
-                    <a href="${res.url}">${res.url}</a>
-                    <p>${res.snippet}</p>
-                    <br>
-                `
-            })
-            cardTrident.innerHTML = result
+            cardTrident.innerHTML = data
           }
         })
     </script>

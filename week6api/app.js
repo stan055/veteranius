@@ -64,18 +64,16 @@ app.post('/apiiss-pass', (req, res) => {
 })
 
 app.post('/api-serpstack', (req, res) => {
-  const key = '013dbcc35e77eb38d08a0b88c4e22cfd' 
-  const q = 'trident'
-  const url = 'http://api.serpstack.com/search?access_key='+key+'&type=web'+'&query='+q+'&page=2'+'&num=10'+'&gl=ua'+'&hl=uk'
+
+  const url = 'http://www.google.com/search?q=trident&start=10'
+
   request.get(url, (error, response, body) => {
     if(body) {
-      var resolve = JSON.parse(body)
-      res.status(200).json(resolve)
+      res.status(200).json(body)
     } else {
       res.status(501)
     }
-    
-  })
+  });
 })
 
 app.post('/api', (req, res) => {
