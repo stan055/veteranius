@@ -145,15 +145,39 @@ console.log(averageWordLength);
             );
 
             $('#editor2').val(
-`const noneArr = [1,,,2,3,,,5,];
+`let count = 0;
 
-noneArr[0] = isNaN(noneArr[0]) == true ? 1 : noneArr[0]
+function myBinarySearch(arr, x) {
+    let n = Math.floor(arr.length / 2);
+    while (true) {
+        count++;
+        if (n + 1 == arr.length)
+            return n + 1;
 
-for (let i = 0; i < noneArr.length; i++) {
-    if (isNaN(noneArr[i]))
-        noneArr[i] = noneArr[i-1] +1 
+        if ( n - 1 == 0)
+            return n - 1;
+
+        if (arr[n - 1] <= x && arr[n + 1] >= x) {
+            if (arr[n] == x)
+                return n;
+            if (arr[n] > x)
+                return n - 1;
+            return n + 1;
+        }
+
+        if (arr[n] > x)
+            n = Math.floor(n / 2); 
+        else 
+            n = Math.floor(n + Math.floor((arr.length - n) / 2));
+    }
 }
-console.log(noneArr);      
+
+let sortedArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const x = 8;
+const n = myBinarySearch(sortedArr, x);
+sortedArr.splice(n, 0, x);
+const result = 'count => ' + count + '<br>' + sortedArr.toString();
+console.log(result);  
 `
             );
 
