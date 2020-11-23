@@ -10,15 +10,32 @@ process.env.PWD = process.cwd()
 app.use(express.static(process.env.PWD + '/client'));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'index.html'))
+  res.sendFile(path.resolve(__dirname, 'client', 'week6/index.html'))
 })
 
-app.get('/medium', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'medium.html'))
+app.get('/week6/medium', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'week6/medium.html'))
 })
 
-app.get('/hard', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'hard.html'))
+app.get('/week6/hard', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'week6/hard.html'))
+})
+
+
+app.get('/week9/easy', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'week9/easy.html'))
+})
+
+app.get('/week9/medium', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'week9/medium.html'))
+})
+
+app.get('/week9/difficult', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'week9/difficult.html'))
+})
+
+app.get('/week9/htmlcode', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'week9/htmlcode.html'))
 })
 
 app.use(express.json())
