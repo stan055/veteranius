@@ -17,6 +17,13 @@
         <title>Veteranius</title>
     </head>
 <body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Roboto+Condensed:wght@300&display=swap');
+        .editor {
+            font-family: 'Roboto Condensed', sans-serif;
+            padding: .6rem;
+        }
+    </style>
     <nav class="navbar navbar-expand navbar-light bg-light">
         <a class="navbar-brand" href="#">Veteranius</a>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -64,7 +71,7 @@
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
                         <p>
-                            <textarea name="" id="editor1" cols="60" rows="10"></textarea>
+                            <textarea name="" id="editor1" class="editor" cols="60" rows="10"></textarea>
                         </p>
                         <button class="btn btn-primary" onclick="btnSmallNum()">Run</button>
                     </blockquote>
@@ -83,7 +90,7 @@
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
                         <p>
-                            <textarea name="" id="editor2" cols="60" rows="10"></textarea>
+                            <textarea name="" id="editor2" class="editor" cols="60" rows="10"></textarea>
                         </p>
                         <button class="btn btn-primary" onclick="btnSort()">Run</button>
                     </blockquote>
@@ -94,6 +101,7 @@
             </div>
         </div>
     </div>
+    <br><br><br><br>
 
     <script>
         let resultP;
@@ -146,6 +154,7 @@ console.log(averageWordLength);
 
             $('#editor2').val(
 `let count = 0;
+const x = 8;
 
 function myBinarySearch(arr, x) {
     let n = Math.floor(arr.length / 2);
@@ -173,7 +182,6 @@ function myBinarySearch(arr, x) {
 }
 
 let sortedArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-const x = 8;
 const n = myBinarySearch(sortedArr, x);
 sortedArr.splice(n, 0, x);
 const result = 'count => ' + count + '<br>' + sortedArr.toString();

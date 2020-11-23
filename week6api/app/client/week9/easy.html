@@ -17,6 +17,13 @@
         <title>Veteranius</title>
     </head>
 <body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Roboto+Condensed:wght@300&display=swap');
+        .editor {
+            font-family: 'Roboto Condensed', sans-serif;
+            padding: .6rem;
+        }
+    </style>
     <nav class="navbar navbar-expand navbar-light bg-light">
         <a class="navbar-brand" href="#">Veteranius</a>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -64,7 +71,7 @@
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
                         <p>
-                            <textarea name="" id="editor1" cols="60" rows="10"></textarea>
+                            <textarea name="" id="editor1" class="editor" cols="60" rows="10"></textarea>
                         </p>
                         <button class="btn btn-primary" onclick="btnSmallNum()">Run</button>
                     </blockquote>
@@ -83,7 +90,7 @@
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
                         <p>
-                            <textarea name="" id="editor2" cols="60" rows="10">1+1</textarea>
+                            <textarea name="" id="editor2" class="editor" cols="60" rows="10">1+1</textarea>
                         </p>
                         <button class="btn btn-primary" onclick="btnSort()">Run</button>
                     </blockquote>
