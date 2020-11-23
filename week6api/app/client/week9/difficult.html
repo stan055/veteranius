@@ -50,8 +50,8 @@
         <h5>(Difficult) Algorithms</h5>
         <div>
             <ol>
-                <li>1. For a given sentence, return the average word length. Remember to remove punctuation first.</li>
-                <li>2. Insert x into sorted array to keep it properly sorted. Time complexity should be lower than N.</li>
+                <li> For a given sentence, return the average word length. Remember to remove punctuation first.</li>
+                <li> Insert x into sorted array to keep it properly sorted. Time complexity should be lower than N.</li>
             </ol>
         </div>
         <br>
@@ -99,42 +99,42 @@
         let resultP;
         $(document).ready(function(){
             $('#editor1').val(
-`const punctArr = [',', '.'];
-const str = 'For a given sentence, return the average word length. Remember to remove punctuation first.'; 
+`const punctsArr = [',', '.'];
+const strOrigin = 'For a given sentence, return the average word length. Remember to remove punctuation first.'; 
 
-function removePunctuation(_str, _punctArr) {
+function removePunctuation(str, puncts) {
     let noPunctStr = '';
-    for (let i = 0; i < _str.length; i++) {
+    for (let i = 0; i < str.length; i++) {
         let ok = true;
-        _punctArr.forEach(el => {
-            if (el === _str[i])
+        puncts.forEach(el => {
+            if (el === str[i])
                 ok = false;
         });
         if (ok) 
-            noPunctStr += _str[i];
+            noPunctStr += str[i];
     }
     return noPunctStr;
 }
 
-function mySplit(_str, separ) {
+function mySplit(str, separ) {
     let word = '';
-    const wordArr = [];
+    const words = [];
 
-    for (let i = 0; i < _str.length; i++) {
-        if (_str[i] === separ && word.length > 0) {
-            wordArr.push(word);
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === separ && word.length > 0) {
+            words.push(word);
             word = '';
         } else {
-            word += _str[i];
+            word += str[i];
         }
     };
     if (word.length > 0) {
-        wordArr.push(word);
+        words.push(word);
     }
-    return wordArr;
+    return words;
 }
 
-let noPunctStr = removePunctuation(str, punctArr);
+let noPunctStr = removePunctuation(strOrigin, punctsArr);
 let wordArr = mySplit(noPunctStr, ' ')
 
 let accumulator = 0;
